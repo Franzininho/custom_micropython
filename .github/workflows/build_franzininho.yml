@@ -20,14 +20,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      # - name: Prepare to Build Micropython Firmware for ESP3_S2
-      #   run: |
-      #     git submodule init
-      #     git submodule update --recursive
-      #     cd micropython
-      #     git submodule update --init lib/axtls
-      #     git submodule update --init lib/berkeley-db-1.xx
-      #     cd ..
+      - name: Prepare to Build Micropython Firmware for ESP3_S2
+        run: |
+          git submodule init
+          git submodule update --recursive
+          cd micropython
+          git submodule update --init lib/axtls
+          git submodule update --init lib/berkeley-db-1.xx
+          cd ..
       # - name: Install ESP-IDF and Build project
       #   uses: rmshub/esp-idf-action@v4
       #   with: 
