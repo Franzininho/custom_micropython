@@ -68,15 +68,6 @@ jobs:
            cd ~/work/my_micropython/my_micropython/micropython/ports/esp32
            echo "idf.py set-target esp32s2 -D MICROPY_BOARD=FRANZININHO_ESP32_S2_WROOM -B ~/build  build"
            idf.py set-target esp32s2 -D MICROPY_BOARD=FRANZININHO_ESP32_S2_WROOM -B ~/build  build
-
-          # echo "cd ./boards/esp32/MICROLITE"
-      #     # cd ./boards/esp32/MICROLITE
-
-      #     # echo "Building MICROLITE"
-      #     # rm -rf builds
-      #     # idf.py clean build
-      #     ./build.sh
-
       - name: Archive ESP32 firmware
         uses: actions/upload-artifact@v2
         with:
