@@ -55,7 +55,7 @@ jobs:
       - name: Build micropython cross compiler
         run: |
           source ~/work/esp/esp-idf/export.sh
-          cd ~/work/micropython
+          cd ~/work/my_micropython/my_micropython/micropython
           echo "make -C mpy-cross V=1 clean all"
           make -C mpy-cross V=1 clean all
 
