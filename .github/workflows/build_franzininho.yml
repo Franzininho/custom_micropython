@@ -2,7 +2,7 @@ name: ESP32_S2
 
 # https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#onschedule
 on:
-  check_run:
+  push:
     
 # on:
 #   push:
