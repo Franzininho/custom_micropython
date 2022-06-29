@@ -68,6 +68,6 @@ jobs:
         with:
           name: esp32-firmware
           path: |
-            ~/build/partition_table/partition_table.bin
+            ~/build/partition_table/partition-table.bin
             ~/build/bootloader/bootloader.bin
             ~/build/micropython.bin
