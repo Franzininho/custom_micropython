@@ -39,8 +39,8 @@ jobs:
           cd ..   
       - name: Build micropython cross compiler
         run: |
-          source ./esp/esp-idf/export.sh
-          cd ./micropython
+          source esp/esp-idf/export.sh
+          cd micropython
           echo "make -C mpy-cross V=1 clean all"
           make -C mpy-cross V=1 clean all
 
