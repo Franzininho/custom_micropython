@@ -29,8 +29,7 @@ jobs:
           git submodule update --init lib/berkeley-db-1.xx
           cd ..
       - name: Install ESP-IDF
-        uses: actions/checkout@v2
-        run:
+        run: |
           mkdir -p ~/esp
           cd ~/esp
           git clone -b v4.4.1 --recursive https://github.com/espressif/esp-idf.git
