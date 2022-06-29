@@ -1,0 +1,63 @@
+name: ESP32_S2
+
+# https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#onschedule
+on:
+  check_run:
+    
+# on:
+#   push:
+#   pull_request:
+#     paths-ignore:
+#       - "examples/**"
+#       - "README.md"
+#       - "ci/*unix*.sh"
+#       - ".github/workflows/build_unix.yml"
+
+jobs:
+  micropython_esp32_s2_build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Prepare to Build Micropython Firmware for ESP3_S2
+        run: |
+          git submodule init
+          git submodule update --recursive
+          cd micropython
+          git submodule update --init lib/axtls
+          git submodule update --init lib/berkeley-db-1.xx
+          cd ..
+      - name: esp-idf build
+        uses: espressif/esp-idf-ci-action@v1
+        with:
+          esp_idf_version: v4.4
+          target: esp32s2
+          path: 'esp-idf'
+      - name: Build micropython cross compiler
+        run: |
+          source ./esp-idf/export.sh
+          cd ./micropython
+          echo "make -C mpy-cross V=1 clean all"
+          make -C mpy-cross V=1 clean all
+
+      - name: Build standard non-psram 4MB Flash firmware
+        run: |
+          source ./esp-idf/export.sh
+
+          # echo "cd ./boards/esp32/MICROLITE"
+          # cd ./boards/esp32/MICROLITE
+
+          # echo "Building MICROLITE"
+          # rm -rf builds
+          # idf.py clean build
+          ./build.sh
+
+      - name: Archive ESP32-MICROLITE firmware
+        uses: actions/upload-artifact@v2
+        with:
+          name: microlite-esp32-firmware
+          path: |
+            boards/esp32/MICROLITE/build/bootloader/bootloader.bin
+            boards/esp32/MICROLITE/build/partition_table/partition-table.bin
+            boards/esp32/MICROLITE/build/micropython.bin
