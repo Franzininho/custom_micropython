@@ -20,7 +20,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-          path = '~'
+        with:
+            path: '.'
 
       - name: create_test_upload
         run:  |
