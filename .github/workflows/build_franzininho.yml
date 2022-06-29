@@ -35,12 +35,14 @@ jobs:
           git clone -b v4.4.1 --recursive https://github.com/espressif/esp-idf.git
           cd esp-idf
           ./install.sh esp32
-      # - name: Build micropython cross compiler
-      #   run: |
-      #     source ./app/esp-idf/export.sh
-      #     cd ./micropython
-      #     echo "make -C mpy-cross V=1 clean all"
-      #     make -C mpy-cross V=1 clean all
+          cd ..
+          cd ..   
+      - name: Build micropython cross compiler
+        run: |
+          source ./esp/esp-idf/export.sh
+          cd ./micropython
+          echo "make -C mpy-cross V=1 clean all"
+          make -C mpy-cross V=1 clean all
 
       # - name: Build standard non-psram 4MB Flash firmware
       #   run: |
