@@ -36,14 +36,14 @@ jobs:
           path: 'esp-idf'
       - name: Build micropython cross compiler
         run: |
-          source ./esp-idf/export.sh
+          source ./app/esp-idf/export.sh
           cd ./micropython
           echo "make -C mpy-cross V=1 clean all"
           make -C mpy-cross V=1 clean all
 
       - name: Build standard non-psram 4MB Flash firmware
         run: |
-          source ./esp-idf/export.sh
+          source ./app/esp-idf/export.sh
 
           # echo "cd ./boards/esp32/MICROLITE"
           # cd ./boards/esp32/MICROLITE
