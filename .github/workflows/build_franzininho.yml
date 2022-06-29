@@ -20,6 +20,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+          path = '~'
+
+      - name: test_upload
+        run:  |
+          mkdir -p path/to/artifact
+          echo hello > path/to/artifact/world.txt
+
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: path/to/artifact/world.txt        
+      
       - name: Prepare to Build Micropython Firmware for ESP3_S2
         run: |
           git submodule init
