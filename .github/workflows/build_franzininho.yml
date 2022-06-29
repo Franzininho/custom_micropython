@@ -22,11 +22,12 @@ jobs:
         uses: actions/checkout@v2
           path = '~'
 
-      - name: test_upload
+      - name: create_test_upload
         run:  |
           mkdir -p path/to/artifact
           echo hello > path/to/artifact/world.txt
 
+      - name: test_upload
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
