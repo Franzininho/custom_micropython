@@ -58,12 +58,16 @@ jobs:
           cd ~/work/my_micropython/my_micropython/micropython
           echo "make -C mpy-cross V=1 clean all"
           make -C mpy-cross V=1 clean all
+      - name: Build ESP32 firmware
+        run: |
+           source ~/work/esp/esp-idf/export.sh
+           mkdir ~/work/my_micropython/my_micropython/micropython/ports/esp32/boards/FRANZININHO_ESP32_S2_WROOM 
+           mkdir ~/build
+           cp ~/work/my_micropython/boards/esp32/FRANZININHO_ESP32_S2_WROOM/* ~/work/my_micropython/my_micropython/micropython/ports/esp32/boards/FRANZININHO_ESP32_S2_WROOM/.
+           cd ~/work/my_micropython/my_micropython/micropython/ports/esp32
+           idf.py -D MICROPY_BOARD=FRANZININHO_ESP32_S2_WROOM -B ~/build  build
 
-      # - name: Build standard non-psram 4MB Flash firmware
-      #   run: |
-      #     source ./app/esp-idf/export.sh
-
-      #     # echo "cd ./boards/esp32/MICROLITE"
+          # echo "cd ./boards/esp32/MICROLITE"
       #     # cd ./boards/esp32/MICROLITE
 
       #     # echo "Building MICROLITE"
@@ -71,11 +75,9 @@ jobs:
       #     # idf.py clean build
       #     ./build.sh
 
-      # - name: Archive ESP32-MICROLITE firmware
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: microlite-esp32-firmware
-      #     path: |
-      #       boards/esp32/MICROLITE/build/bootloader/bootloader.bin
-      #       boards/esp32/MICROLITE/build/partition_table/partition-table.bin
-      #       boards/esp32/MICROLITE/build/micropython.bin
+      - name: Archive ESP32 firmware
+        uses: actions/upload-artifact@v2
+        with:
+          name: esp32-firmware
+          path: |
+            ~/build/
