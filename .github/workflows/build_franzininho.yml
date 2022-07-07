@@ -50,9 +50,10 @@ jobs:
         run: |
            echo "source ~/work/esp/esp-idf/export.sh"
            source ~/work/esp/esp-idf/export.sh
-           mkdir ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_ESP32_S2_WROOM 
+           mkdir ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_ESP32_S2_WROOM/modules 
            mkdir ~/build
            cp ~/work/custom_micropython/custom_micropython/boards/esp32/FRANZININHO_ESP32_S2_WROOM/* ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_ESP32_S2_WROOM/.
+           cp ~/work/custom_micropython/custom_micropython/boards/esp32/FRANZININHO_ESP32_S2_WROOM/modules/* ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_ESP32_S2_WROOM/modules/.
            cd ~/work/custom_micropython/custom_micropython/micropython/ports/esp32
            source ~/work/esp/esp-idf/export.sh
            echo "idf.py -D MICROPY_BOARD=FRANZININHO_ESP32_S2_WROOM -B ~/build  build"
