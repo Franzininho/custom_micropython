@@ -50,15 +50,7 @@ jobs:
         run: |
            echo "source ~/work/esp/esp-idf/export.sh"
            source ~/work/esp/esp-idf/export.sh
-           mkdir -p ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_ESP32_S2_WROOM/modules/
-           mkdir -p ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_WIFI_WROVER/modules/
-           mkdir -p ~/build/FRANZININHO_ESP32_S2_WROOM
-           mkdir -p ~/build/FRANZININHO_WIFI_WROVER
-           cp ~/work/custom_micropython/custom_micropython/boards/esp32/FRANZININHO_ESP32_S2_WROOM/* ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_ESP32_S2_WROOM/.
-           cp ~/work/custom_micropython/custom_micropython/boards/esp32/FRANZININHO_ESP32_S2_WROOM/modules/* ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_ESP32_S2_WROOM/modules/.
-           cp ~/work/custom_micropython/custom_micropython/boards/esp32/FRANZININHO_WIFI_WROVER/* ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_WIFI_WROVER/.
-           cp ~/work/custom_micropython/custom_micropython/boards/esp32/FRANZININHO_WIFI_WROVER/modules/* ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_WIFI_WROVER/modules/.
-
+           cp -R ~/work/custom_micropython/custom_micropython/boards/esp32/* ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/
            cd ~/work/custom_micropython/custom_micropython/micropython/ports/esp32
            source ~/work/esp/esp-idf/export.sh
            echo "idf.py -D MICROPY_BOARD=FRANZININHO_ESP32_S2_WROOM -B ~/build/FRANZININHO_ESP32_S2_WROOM  build"
