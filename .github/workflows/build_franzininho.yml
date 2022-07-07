@@ -50,19 +50,36 @@ jobs:
         run: |
            echo "source ~/work/esp/esp-idf/export.sh"
            source ~/work/esp/esp-idf/export.sh
-           mkdir ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_ESP32_S2_WROOM/modules 
-           mkdir ~/build
+           mkdir ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_ESP32_S2_WROOM/ 
+           mkdir ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_ESP32_S2_WROOM/modules/
+           mkdir ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_WIFI_WROVER/
+           mkdir ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_WIFI_WROVER/modules/
+           mkdir ~/build/FRANZININHO_ESP32_S2_WROOM
+           mkdir ~/build/FRANZININHO_WIFI_WROVER
            cp ~/work/custom_micropython/custom_micropython/boards/esp32/FRANZININHO_ESP32_S2_WROOM/* ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_ESP32_S2_WROOM/.
            cp ~/work/custom_micropython/custom_micropython/boards/esp32/FRANZININHO_ESP32_S2_WROOM/modules/* ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_ESP32_S2_WROOM/modules/.
+           cp ~/work/custom_micropython/custom_micropython/boards/esp32/FRANZININHO_WIFI_WROVER/* ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_WIFI_WROVER/.
+           cp ~/work/custom_micropython/custom_micropython/boards/esp32/FRANZININHO_WIFI_WROVER/modules/* ~/work/custom_micropython/custom_micropython/micropython/ports/esp32/boards/FRANZININHO_WIFI_WROVER/modules/.
+
            cd ~/work/custom_micropython/custom_micropython/micropython/ports/esp32
            source ~/work/esp/esp-idf/export.sh
-           echo "idf.py -D MICROPY_BOARD=FRANZININHO_ESP32_S2_WROOM -B ~/build  build"
-           idf.py -D MICROPY_BOARD=FRANZININHO_ESP32_S2_WROOM -B ~/build  build
-      - name: Archive ESP32 firmware
+           echo "idf.py -D MICROPY_BOARD=FRANZININHO_ESP32_S2_WROOM -B ~/build/FRANZININHO_ESP32_S2_WROOM  build"
+           idf.py -D MICROPY_BOARD=FRANZININHO_ESP32_S2_WROOM -B ~/build/FRANZININHO_ESP32_S2_WROOM  build
+           echo "idf.py -D MICROPY_BOARD=FRANZININHO_WIFI_WROVER -B ~/build/FRANZININHO_WIFI_WROVER  build"
+           idf.py -D MICROPY_BOARD=FRANZININHO_WIFI_WROVER -B ~/build/FRANZININHO_WIFI_WROVER  build
+      - name: Archive ESP32 FRANZININHO_ESP32_S2_WROOM
         uses: actions/upload-artifact@v2
         with:
-          name: esp32-firmware
+          name: FRANZININHO_ESP32_S2_WROOM
           path: |
-            ~/build/partition_table/partition-table.bin
-            ~/build/bootloader/bootloader.bin
-            ~/build/micropython.bin
+            ~/build/FRANZININHO_ESP32_S2_WROOM/partition_table/partition-table.bin
+            ~/build/FRANZININHO_ESP32_S2_WROOM/bootloader/bootloader.bin
+            ~/build/FRANZININHO_ESP32_S2_WROOM/micropython.bin
+      - name: Archive ESP32 FRANZININHO_WIFI_WROVER
+        uses: actions/upload-artifact@v2
+        with:
+          name: FRANZININHO_WIFI_WROVER
+          path: |
+            ~/build/FRANZININHO_WIFI_WROVER/partition_table/partition-table.bin
+            ~/build/FRANZININHO_WIFI_WROVER/bootloader/bootloader.bin
+            ~/build/FRANZININHO_WIFI_WROVER/micropython.bin
