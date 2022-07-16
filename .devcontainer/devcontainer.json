@@ -7,7 +7,7 @@
 	"context": "..",
 
 	// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
-	"dockerFile": "../.Dockerfile",
+	"dockerFile": "../Dockerfile",
 
 	// Install relevant extensions in the dev container
 	"extensions": [
