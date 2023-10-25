@@ -48,4 +48,5 @@ make -C mpy-cross V=1 clean all
 
 ### Depois de concluída a compilação, os binários estarão disponíveis na pasta build na raiz do projeto ###
 
+##Versão atual do micropyhton: 1.21
 
